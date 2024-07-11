@@ -1,13 +1,13 @@
 using System;
+using SqlSugar;
 
-namespace ConsoleApp
+namespace MyBlog.Model;
+
+public class BaseId
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-            
-        }
-    }
+    [SugarColumn(IsIdentity = true, IsPrimaryKey = true)]
+    public int Id{ get; set;}
+        
+
 }
+
