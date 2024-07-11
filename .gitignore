@@ -1,4 +1,3 @@
-
 BlogsPlatform/appsettings.Development.json
 BlogsPlatform/appsettings.json
 
@@ -12,5 +11,3 @@ MyBlog.Model/obj/
 **/obj/
 
 .vscode/
-
-
