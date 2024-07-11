@@ -1,5 +1,6 @@
 BlogsPlatform/appsettings.Development.json
 BlogsPlatform/appsettings.json
+BlogsPlatform/Properties/
 
 **/bin/
 **/obj/
