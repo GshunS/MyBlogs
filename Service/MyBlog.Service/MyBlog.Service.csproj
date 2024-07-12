@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\..\MyBlog.Model\MyBlog.Model.csproj" />
+    <ProjectReference Include="..\MyBlog.IService\MyBlog.IService.csproj" />
+    <ProjectReference Include="..\..\Repository\MyBlog.IRepository\MyBlog.IRepository.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>

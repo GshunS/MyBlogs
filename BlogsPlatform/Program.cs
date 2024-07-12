@@ -1,3 +1,7 @@
+using MyBlog.IRepository;
+using MyBlog.IService;
+using MyBlog.Repository;
+using MyBlog.Service;
 using SqlSugar.IOC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
+builder.Services.AddSqlSugar(new IocConfig()
+ {
+   ConnectionString = builder.Configuration["SqlConn"],
+   DbType = IocDbType.MySql,
+   IsAutoCloseConnection = true
+ });
+
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<ITypeRepository, TypeRepository>();
+builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
+
+
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<ITypeService, TypeService>();
+builder.Services.AddScoped<IArticleService, ArticleService>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,15 +42,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-# region SqlSugarIOC
-SugarIocServices.AddSqlSugar(new IocConfig()
- {
-    //ConfigId="db01" 
-   ConnectionString = builder.Configuration["SqlConn"],
-   DbType = IocDbType.MySql,
-   IsAutoCloseConnection = true
- });
-# endregion
+
+
+
 
 app.UseHttpsRedirection();
 

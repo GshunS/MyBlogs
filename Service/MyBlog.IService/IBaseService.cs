@@ -1,9 +1,9 @@
-using System;
 using System.Linq.Expressions;
 using SqlSugar;
-namespace MyBlog.IRepository;
 
-public interface IBaseRepository<T> where T:class, new()
+namespace MyBlog.IService;
+
+public interface IBaseService<T> where T:class, new()
 {
     Task<bool> CreateAsync(T entity);
     Task<bool> DeleteAsync(int id);
