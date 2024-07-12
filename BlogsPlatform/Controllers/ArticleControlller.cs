@@ -1,3 +1,4 @@
+using BlogsPlatform.Utils.ApiResult;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 
@@ -14,8 +15,16 @@ public class ArticleControlller : ControllerBase
     }
 
     [HttpGet("Articles")]
-    public async Task<ActionResult> GetArticles(){
+    public async Task<ActionResult<ApiResult>> GetArticles(){
         var data = await _iAuthorService.QueryAllAsync();
-        return Ok(data);
+        if (data == null)
+        {
+            return ApiResultHelper.Error("No Results");
+        }
+        else
+        {
+            return ApiResultHelper.Success(data);
+        }
+        
     }
 }
