@@ -40,6 +40,12 @@ public class BaseRepository<T> : SimpleClient<T>, IBaseRepository<T> where T : c
         return await base.GetByIdAsync(id);
     }
 
+    public virtual async Task<T> FindAsync(Expression<Func<T, bool>> func)
+    {
+        return await base.GetSingleAsync(func);
+    }
+
+
     public virtual async Task<List<T>> QueryAllAsync()
     {
         return await base.GetListAsync();

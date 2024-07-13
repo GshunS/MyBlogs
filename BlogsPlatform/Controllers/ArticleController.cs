@@ -7,10 +7,10 @@ namespace BlogsPlatform.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ArticleControlller : ControllerBase
+public class ArticleController : ControllerBase
 {
     private IArticleService _iArticleService;
-    public ArticleControlller(IArticleService iArticleService)
+    public ArticleController(IArticleService iArticleService)
     {
         this._iArticleService = iArticleService;
     }

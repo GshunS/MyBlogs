@@ -9,6 +9,7 @@ public interface IBaseRepository<T> where T:class, new()
     Task<bool> DeleteAsync(int id);
     Task<bool> EditAsync(T entity);
     Task<T> FindAsync(int id);
+    Task<T> FindAsync(Expression<Func<T, bool>> func);
 
     // query all records
     Task<List<T>> QueryAllAsync();

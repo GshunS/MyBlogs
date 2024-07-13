@@ -28,6 +28,12 @@ public class BaseService<T> : IBaseService<T> where T : class, new()
         return await _IBaseRepository.FindAsync(id);
     }
 
+    public async Task<T> FindAsync(Expression<Func<T, bool>> func)
+    {
+        return await _IBaseRepository.FindAsync(func);
+    }
+
+
     public async Task<List<T>> QueryAllAsync()
     {
         return await _IBaseRepository.QueryAllAsync();
