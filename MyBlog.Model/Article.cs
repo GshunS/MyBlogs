@@ -20,5 +20,5 @@ public class Article:BaseId
     public Type TypeID {get; set;}
 
     [SugarColumn(IsIgnore = true)]
-    public Author AuthorID {get; set;}
+    public Author NewAuthorID {get; set;}
 }
