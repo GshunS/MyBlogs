@@ -2,11 +2,13 @@ using BlogsPlatform.Utils.ApiResult;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 using MyBlog.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogsPlatform.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ArticleController : ControllerBase
 {
     private IArticleService _iArticleService;

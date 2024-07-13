@@ -1,4 +1,5 @@
 using BlogsPlatform.Utils.ApiResult;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 using MyBlog.Model;
@@ -7,6 +8,7 @@ namespace BlogsPlatform.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class TypeController : ControllerBase
 {
     private readonly ITypeService _iTypeService;

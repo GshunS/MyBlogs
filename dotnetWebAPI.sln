@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.IService", "Service\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.Service", "Service\MyBlog.Service\MyBlog.Service.csproj", "{26189213-777E-49C8-A34B-8300F64704D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.JWT", "MyBlog.JWT\MyBlog.JWT.csproj", "{BC2A494C-64D4-4663-AE0E-D7CAD0A5ED28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{26189213-777E-49C8-A34B-8300F64704D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26189213-777E-49C8-A34B-8300F64704D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26189213-777E-49C8-A34B-8300F64704D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2A494C-64D4-4663-AE0E-D7CAD0A5ED28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2A494C-64D4-4663-AE0E-D7CAD0A5ED28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2A494C-64D4-4663-AE0E-D7CAD0A5ED28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2A494C-64D4-4663-AE0E-D7CAD0A5ED28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4DA4F642-4C62-455B-9AE3-6EE40DC8C9C2} = {FA08154D-F76D-4F1D-A98D-A637F2A3F04A}

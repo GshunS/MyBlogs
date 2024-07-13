@@ -1,5 +1,6 @@
 using BlogsPlatform.Utils._MD5;
 using BlogsPlatform.Utils.ApiResult;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 using MyBlog.Model;
@@ -8,6 +9,7 @@ namespace BlogsPlatform.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class AuthorController : ControllerBase
 {
     private readonly IAuthorService _iAuthorService;
@@ -61,9 +63,9 @@ public class AuthorController : ControllerBase
     //     return ApiResultHelper.Success(res);
     // }
 
-    [HttpPut("Update")]
-    public async Task<ActionResult<ApiResult>> UpdateAuthorName(string name){
-        int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
-        return ApiResultHelper.Error("-------------");
-    }
+    // [HttpPut("Update")]
+    // public async Task<ActionResult<ApiResult>> UpdateAuthorName(string name){
+    //     int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
+    //     return ApiResultHelper.Error("-------------");
+    // }
 }

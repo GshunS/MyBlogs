@@ -2,6 +2,10 @@ BlogsPlatform/appsettings.Development.json
 BlogsPlatform/appsettings.json
 BlogsPlatform/Properties/
 
+MyBlog.JWT/appsettings.Development.json
+MyBlog.JWT/appsettings.json
+MyBlog.JWT/Properties/
+
 **/bin/
 **/obj/
 
