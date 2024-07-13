@@ -1,3 +1,4 @@
+using BlogsPlatform.Utils._MD5;
 using BlogsPlatform.Utils.ApiResult;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
@@ -39,7 +40,8 @@ public class AuthorController : ControllerBase
         {
             Name = name,
             AccountNumber = accountNumber,
-            Password = password
+            // Encrypt password
+            Password = MD5Helper.MD5Encrypt32(password)
         };
         var status = await _iAuthorService.CreateAsync(author);
         if (!status)
