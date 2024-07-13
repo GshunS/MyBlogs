@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using MyBlog.IRepository;
 using MyBlog.IService;
 using MyBlog.Repository;
@@ -14,7 +15,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+  c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+  {
+    In = ParameterLocation.Header,
+    Type = SecuritySchemeType.ApiKey,
+    Description = "input 'Bearer token'",
+    Name = "Authorization",
+    BearerFormat = "JWT",
+    Scheme = "Bearer"
+  });
+  c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+          {
+            new OpenApiSecurityScheme
+            {
+              Reference=new OpenApiReference
+              {
+                Type=ReferenceType.SecurityScheme,
+                Id="Bearer"
+              }
+            },
+            new string[] {}
+          }
+        });
+});
+
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -27,7 +54,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 ValidateIssuer = true,
                 ValidIssuer = "http://localhost:6060",
                 ValidateAudience = true,
-                ValidAudience = "http://localhost:5000",
+                ValidAudience = "http://localhost:7146",
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.FromMinutes(60)
               };
