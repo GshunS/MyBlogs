@@ -46,7 +46,7 @@ public class AuthorController : ControllerBase
         return ApiResultHelper.Success(authorDTO);
     }
 
-
+    [AllowAnonymous]
     [HttpPost("CreateAuthor")]
     public async Task<ActionResult<ApiResult>> CreateAuthor(string name, string accountNumber, string password)
     {
