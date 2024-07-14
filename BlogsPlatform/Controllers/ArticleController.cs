@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using MyBlog.IService;
 using MyBlog.Model;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using MyBlog.Model.DTO;
 
 namespace BlogsPlatform.Controllers;
 
@@ -18,17 +20,22 @@ public class ArticleController : ControllerBase
     }
 
     [HttpGet("Articles")]
-    public async Task<ActionResult<ApiResult>> GetArticles()
+    public async Task<ActionResult<ApiResult>> GetArticles([FromServices] IMapper iMapper)
     {
-        var data = await _iArticleService.QueryAllAsync();
+        int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
+        var data = await _iArticleService.QueryAsync(c => c.AuthorId == id);
         if (data == null)
         {
             return ApiResultHelper.Error("No Results");
         }
-        else
-        {
-            return ApiResultHelper.Success(data);
+        
+        List<ArticleDTO> articleList = new();
+        foreach(Article a in data){
+            ArticleDTO articleDTO = iMapper.Map<ArticleDTO>(a);
+            articleList.Add(articleDTO);
         }
+
+        return ApiResultHelper.Success(articleList);
 
     }
     [HttpPost("Create")]
@@ -39,7 +46,7 @@ public class ArticleController : ControllerBase
             Title = title,
             Content = content,
             ArticleType = typeId,
-            AuthorId = 1,
+            AuthorId = Convert.ToInt32(this.User.FindFirst("Id").Value),
             createdTime = DateTime.Now,
             LikeCount = 0,
             ViewAmount = 0
@@ -67,7 +74,8 @@ public class ArticleController : ControllerBase
     public async Task<ActionResult<ApiResult>> EditArticle(int id, string title, string content, int typeId)
     {
         var article = await _iArticleService.FindAsync(id);
-        if(article == null){
+        if (article == null)
+        {
             return ApiResultHelper.Error("The Article doesn't exist");
         }
 
