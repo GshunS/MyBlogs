@@ -5,6 +5,7 @@ using MyBlog.Model;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using MyBlog.Model.DTO;
+using SqlSugar;
 
 namespace BlogsPlatform.Controllers;
 
@@ -39,6 +40,28 @@ public class ArticleController : ControllerBase
         }
 
         return ApiResultHelper.Success(articleList);
+
+    }
+
+    // Get all articles belong to the current user with pagination
+    [HttpGet("Pagination")]
+    public async Task<ActionResult<ApiResult>> GetArticlesByPage([FromServices] IMapper iMapper, [FromQuery]int page, [FromQuery]int size)
+    {
+        // After user login, user id can be retrieved from JWT service
+        int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
+
+        // Total records
+        RefAsync<int> total = 0;        
+
+        var articles = await _iArticleService.QueryPagingAsync(c => c.AuthorId == id, page, size, total);
+        if (articles == null)
+        {
+            return ApiResultHelper.Error("No Results");
+        }
+        
+        // use automapper to return ArticleDTO instead of Article
+        var articleDTO = iMapper.Map<List<ArticleDTO>>(articles);
+        return ApiResultHelper.Success(articleDTO, total);
 
     }
 
