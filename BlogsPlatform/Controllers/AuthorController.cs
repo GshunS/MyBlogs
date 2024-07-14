@@ -63,9 +63,15 @@ public class AuthorController : ControllerBase
     //     return ApiResultHelper.Success(res);
     // }
 
-    // [HttpPut("Update")]
-    // public async Task<ActionResult<ApiResult>> UpdateAuthorName(string name){
-    //     int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
-    //     return ApiResultHelper.Error("-------------");
-    // }
+    [HttpPut("Update")]
+    public async Task<ActionResult<ApiResult>> UpdateAuthorName(string name){
+        int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
+        var author = await _iAuthorService.FindAsync(id);
+        author.Name = name;
+        var res = await _iAuthorService.EditAsync(author);
+        if(!res){
+            return ApiResultHelper.Error("fail to update");
+        }
+        return ApiResultHelper.Success(author);
+    }
 }

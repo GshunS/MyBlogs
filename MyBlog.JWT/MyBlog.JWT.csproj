@@ -9,7 +9,6 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlogsPlatform\BlogsPlatform.csproj" />
     <ProjectReference Include="..\MyBlog.Model\MyBlog.Model.csproj" />
     <ProjectReference Include="..\Repository\MyBlog.IRepository\MyBlog.IRepository.csproj" />
     <ProjectReference Include="..\Repository\MyBlog.Repository\MyBlog.Repository.csproj" />
