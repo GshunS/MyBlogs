@@ -19,9 +19,11 @@ public class ArticleController : ControllerBase
         this._iArticleService = iArticleService;
     }
 
+    // Get all articles belong to the current user
     [HttpGet("Articles")]
     public async Task<ActionResult<ApiResult>> GetArticles([FromServices] IMapper iMapper)
     {
+        // After user login, user id can be retrieved from JWT service
         int id = Convert.ToInt32(this.User.FindFirst("Id").Value);
         var data = await _iArticleService.QueryAsync(c => c.AuthorId == id);
         if (data == null)
@@ -29,6 +31,7 @@ public class ArticleController : ControllerBase
             return ApiResultHelper.Error("No Results");
         }
         
+        // use automapper to return ArticleDTO instead of Article
         List<ArticleDTO> articleList = new();
         foreach(Article a in data){
             ArticleDTO articleDTO = iMapper.Map<ArticleDTO>(a);
@@ -38,6 +41,8 @@ public class ArticleController : ControllerBase
         return ApiResultHelper.Success(articleList);
 
     }
+
+    // Create a post 
     [HttpPost("Create")]
     public async Task<ActionResult<ApiResult>> CreateArticle(string title, string content, int typeId)
     {
@@ -59,6 +64,7 @@ public class ArticleController : ControllerBase
         return ApiResultHelper.Success(a);
     }
 
+    // delete a post 
     [HttpDelete("Delete")]
     public async Task<ActionResult<ApiResult>> DeleteArticle(int id)
     {
@@ -70,6 +76,7 @@ public class ArticleController : ControllerBase
         return ApiResultHelper.Success(res);
     }
 
+    // edit a post
     [HttpPut("Edit")]
     public async Task<ActionResult<ApiResult>> EditArticle(int id, string title, string content, int typeId)
     {
