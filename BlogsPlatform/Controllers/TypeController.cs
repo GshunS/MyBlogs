@@ -16,7 +16,7 @@ public class TypeController : ControllerBase
     {
         this._iTypeService = iTypeService;
     }
-
+    [AllowAnonymous]
     [HttpGet("Type")]
     public async Task<ActionResult<ApiResult>> GetTypes()
     {

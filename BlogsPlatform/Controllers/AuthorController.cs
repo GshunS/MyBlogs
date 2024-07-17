@@ -20,7 +20,7 @@ public class AuthorController : ControllerBase
         this._iAuthorService = iAuthorService;
 
     }
-
+    [AllowAnonymous]
     [HttpGet("Author")]
     public async Task<ActionResult<ApiResult>> GetAuthor()
     {
