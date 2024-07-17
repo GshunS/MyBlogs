@@ -8,5 +8,5 @@ MyBlog.JWT/Properties/
 
 **/bin/
 **/obj/
-
+**/DigiCertGlobalRootCA.crt
 .vscode/
