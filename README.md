@@ -64,6 +64,25 @@ To get started with MyBlogs, ensure that you have .NET 6 and MySQL installed on 
    - You should now have access to all APIs.
 
 
+### Azure
+   - The web application API has been deployed on Azure.
+   - You can explore and use the [blogs API](https://mytempblogswebapi.azurewebsites.net/swagger/index.html) and [JWT API](https://tempblogjwt.azurewebsites.net/swagger/index.html).
+
+   - Some APIs are accessible without authentication. For example: 
+      - Author: Author; FindAuthor; CreateAuthor
+      - Type: Type
+      - etc.
+
+   - To access protected APIs, follow these steps:
+      1. Use CreateAuthor API to create an author 
+      2. Access login API from [JWT API](https://tempblogjwt.azurewebsites.net/swagger/index.html) using the accountNumber and password you just created
+      3. If successful, you will receive a token in the response body: response["data"]
+      4. Go back to [blogs API](https://mytempblogswebapi.azurewebsites.net/swagger/index.html). Click the Authorize icon at the top right corner. 
+         - Enter "Bearer {your token}" (without quotation marks and curly braces).
+         - Note: There should be a whitespace between "Bearer" and your token.
+      5. Now, you can access all APIs!
+
+
 
 
 
