@@ -21,7 +21,6 @@ public class ArticleController : ControllerBase
     }
 
     // Get all articles belong to the current user
-    [AllowAnonymous]
     [HttpGet("Articles")]
     public async Task<ActionResult<ApiResult>> GetArticles([FromServices] IMapper iMapper)
     {
@@ -45,7 +44,6 @@ public class ArticleController : ControllerBase
     }
 
     // Get all articles belong to the current user with pagination
-    [AllowAnonymous]
     [HttpGet("Pagination")]
     public async Task<ActionResult<ApiResult>> GetArticlesByPage([FromServices] IMapper iMapper, [FromQuery]int page, [FromQuery]int size)
     {
