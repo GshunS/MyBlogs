@@ -64,7 +64,7 @@ To get started with MyBlogs, ensure that you have .NET 6 and MySQL installed on 
    - You should now have access to all APIs.
 
 
-### Azure
+## Azure
    - The web application API has been deployed on Azure.
    - You can explore and use the [blogs API](https://mytempblogswebapi.azurewebsites.net/swagger/index.html) and [JWT API](https://tempblogjwt.azurewebsites.net/swagger/index.html).
 
