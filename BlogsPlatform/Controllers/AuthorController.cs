@@ -10,7 +10,7 @@ using MyBlog.Model.DTO;
 namespace BlogsPlatform.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api")]
 [Authorize]
 public class AuthorController : ControllerBase
 {
@@ -21,7 +21,7 @@ public class AuthorController : ControllerBase
 
     }
     [AllowAnonymous]
-    [HttpGet("Author")]
+    [HttpGet("authors")]
     public async Task<ActionResult<ApiResult>> GetAuthor()
     {
         var authors = await _iAuthorService.QueryAllAsync();
@@ -33,7 +33,7 @@ public class AuthorController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpGet("FindAuthor")]
+    [HttpGet("authors/{id}")]
     public async Task<ActionResult<ApiResult>> GetAuthorById([FromServices]IMapper iMapper, int id)
     {
         var author = await _iAuthorService.FindAsync(id);
@@ -47,7 +47,7 @@ public class AuthorController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("CreateAuthor")]
+    [HttpPost("authors")]
     public async Task<ActionResult<ApiResult>> CreateAuthor(string name, string accountNumber, string password)
     {
         var res = await _iAuthorService.FindAsync(c => c.AccountNumber == accountNumber);
@@ -80,7 +80,7 @@ public class AuthorController : ControllerBase
     //     return ApiResultHelper.Success(res);
     // }
 
-    [HttpPut("Update")]
+    [HttpPut("authors")]
     public async Task<ActionResult<ApiResult>> UpdateAuthorName(string name)
     {
         int id = Convert.ToInt32(this.User.FindFirst("Id").Value);

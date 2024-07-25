@@ -57,7 +57,7 @@ To get started with MyBlogs, ensure that you have .NET 6 and MySQL installed on 
 
 3. **Accessing Protected APIs**:
    - This project uses JWT for authentication. Some APIs in the blog project require authentication, and you will receive a 401 error if you try to access them without logging in.
-   - Start by running the blog project and use the `createAuthor` API to create a user.
+   - Start by running the blog project and use the `post(/api/authors)` API to create a user.
    - Next, run the JWT service and use the `login` API. Enter your username and password.
    - You will receive a token in the response. Copy this token.
    - Click on the `Authorize` icon and enter the token in the following format: "Bearer {your token}".
@@ -69,8 +69,8 @@ To get started with MyBlogs, ensure that you have .NET 6 and MySQL installed on 
    - You can explore and use the [blogs API](https://mytempblogswebapi.azurewebsites.net/swagger/index.html) and [JWT API](https://tempblogjwt.azurewebsites.net/swagger/index.html).
 
    - Some APIs are accessible without authentication. For example: 
-      - Author: Author; FindAuthor; CreateAuthor
-      - Type: Type
+      - Author: get(/api/authors); get(/api/authors/{id}); post(/api/authors)
+      - Type: get(/api/types)
       - etc.
 
    - To access protected APIs, follow these steps:

@@ -10,7 +10,7 @@ using SqlSugar;
 namespace BlogsPlatform.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api")]
 [Authorize]
 public class ArticleController : ControllerBase
 {
@@ -21,7 +21,7 @@ public class ArticleController : ControllerBase
     }
 
     // Get all articles belong to the current user
-    [HttpGet("Articles")]
+    [HttpGet("articles")]
     public async Task<ActionResult<ApiResult>> GetArticles([FromServices] IMapper iMapper)
     {
         // After user login, user id can be retrieved from JWT service
@@ -44,7 +44,7 @@ public class ArticleController : ControllerBase
     }
 
     // Get all articles belong to the current user with pagination
-    [HttpGet("Pagination")]
+    [HttpGet("articles/pagination")]
     public async Task<ActionResult<ApiResult>> GetArticlesByPage([FromServices] IMapper iMapper, [FromQuery]int page, [FromQuery]int size)
     {
         // After user login, user id can be retrieved from JWT service
@@ -66,7 +66,7 @@ public class ArticleController : ControllerBase
     }
 
     // Create a post 
-    [HttpPost("Create")]
+    [HttpPost("articles")]
     public async Task<ActionResult<ApiResult>> CreateArticle(string title, string content, int typeId)
     {
         Article a = new Article
@@ -88,7 +88,7 @@ public class ArticleController : ControllerBase
     }
 
     // delete a post 
-    [HttpDelete("Delete")]
+    [HttpDelete("articles/{id}")]
     public async Task<ActionResult<ApiResult>> DeleteArticle(int id)
     {
         bool res = await _iArticleService.DeleteAsync(id);
@@ -100,7 +100,7 @@ public class ArticleController : ControllerBase
     }
 
     // edit a post
-    [HttpPut("Edit")]
+    [HttpPut("articles/{id}")]
     public async Task<ActionResult<ApiResult>> EditArticle(int id, string title, string content, int typeId)
     {
         var article = await _iArticleService.FindAsync(id);

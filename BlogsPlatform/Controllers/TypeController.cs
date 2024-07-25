@@ -7,7 +7,7 @@ using MyBlog.Model;
 namespace BlogsPlatform.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api")]
 [Authorize]
 public class TypeController : ControllerBase
 {
@@ -17,7 +17,7 @@ public class TypeController : ControllerBase
         this._iTypeService = iTypeService;
     }
     [AllowAnonymous]
-    [HttpGet("Type")]
+    [HttpGet("types")]
     public async Task<ActionResult<ApiResult>> GetTypes()
     {
         var data = await _iTypeService.QueryAllAsync();
@@ -31,7 +31,7 @@ public class TypeController : ControllerBase
         }
 
     }
-    [HttpPost("Create")]
+    [HttpPost("types")]
     public async Task<ActionResult<ApiResult>> CreateType(string name)
     {
         MyBlog.Model.Type a = new MyBlog.Model.Type
@@ -47,7 +47,7 @@ public class TypeController : ControllerBase
         return ApiResultHelper.Success(a);
     }
 
-    [HttpDelete("Delete")]
+    [HttpDelete("types/{id}")]
     public async Task<ActionResult<ApiResult>> DeleteType(int id)
     {
         bool res = await _iTypeService.DeleteAsync(id);
@@ -58,7 +58,7 @@ public class TypeController : ControllerBase
         return ApiResultHelper.Success(res);
     }
 
-    [HttpPut("Edit")]
+    [HttpPut("types/{id}")]
     public async Task<ActionResult<ApiResult>> EditType(int id, string name)
     {
         var articleType = await _iTypeService.FindAsync(id);
